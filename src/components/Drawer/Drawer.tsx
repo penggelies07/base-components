@@ -5,7 +5,7 @@ interface IDrawerProps {
   prefixCls?: string,
   visible?: boolean,
   docked?: boolean,
-  width: number,
+  width?: number,
   anchor?: 'left' | 'right' | 'top' | 'bottom',
   overlayStyle?: string
   className?: string,
