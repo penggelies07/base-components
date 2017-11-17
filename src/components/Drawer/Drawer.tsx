@@ -1,16 +1,19 @@
 import * as React from 'react'
-import * as CSSTransition from 'react-transition-group/CSSTransition'
+import * as classnames from 'classnames'
+// import * as CSSTransition from 'react-transition-group/CSSTransition'
 import './Drawer.less'
 
 interface IDrawerProps {
-  prefixCls?: string,
   visible?: boolean,
   docked?: boolean,
   width?: number,
   anchor?: 'left' | 'right' | 'top' | 'bottom',
-  overlayStyle?: string
   className?: string,
   style?: React.CSSProperties,
+  containerClassName?: string,
+  containerStyle?: React.CSSProperties,
+  overlayClassName?: string,
+  overlayStyle?: React.CSSProperties,
   children?: Node,
   onOpen?: () => void,
   onClose?: () => void,
@@ -31,12 +34,34 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
   state = {}
 
   render () {
+    const {
+      // visible,
+      // docked,
+      // width,
+      // anchor,
+      className,
+      // containerStyle,
+      // overlayStyle,
+      // children,
+      // onOpen,
+      // onClose,
+      // onRequestChange
+    } = this.props
+
+    const classString = classnames('Drawer', className)
+
+    // let styleString = Object.assign({}, containerStyle)
+
     return (
-      <CSSTransition
-        classNames='Drawer'
-        timeout={300}>
-        <div className='Drawer'>Drawer</div>
-      </CSSTransition>
+      <div className={classString}>
+        <div></div>
+        {/* <CSSTransition
+          classNames={classString}
+          timeout={300}>
+          <div className='Drawer'>Drawer</div>
+        </CSSTransition> */}
+
+      </div>
     )
   }
 }

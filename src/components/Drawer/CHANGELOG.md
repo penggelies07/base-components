@@ -1,22 +1,20 @@
 # Drawer
 
 ## Desc
+抽屉
 
-React base components built with typescript
-
-## Reference
-[x] material-ui Drawer
-[x] white-cat SidePanel
-[x] ant-design-mobile Drawer
-[x] rc-drawer
+通过设置anchor控制Drawer位置，设置width控制Drawer大小，通过操作visible属性对Drawer
+进行滑动展示，点击背景阴影时控制visible为false
 
 ## Props
 
-- prefixCls
 - className
 - style
 - children
 
+- containerClassName
+- containerStyle
+- overlayClassName
 - overlayStyle
 
 - anchor

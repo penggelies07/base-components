@@ -15,7 +15,7 @@ export default class testDrawer extends React.Component<ItestDrawerProps, ItestD
   render () {
     return (
       <div className='testDrawer'>
-        <h1>testDrawer</h1>
+        <h1>Drawer</h1>
         <Drawer/>
       </div>
     )
