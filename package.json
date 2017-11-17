@@ -1,0 +1,26 @@
+{
+  "name": "base-components",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/classnames": "^2.2.3",
+    "@types/react": "^16.0.24",
+    "@types/react-dom": "^16.0.3",
+    "classnames": "^2.2.5",
+    "date-fns": "^1.29.0",
+    "material-design-icons": "^3.0.1",
+    "normalize.css": "^7.0.0",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-scripts": "1.0.17",
+    "timeago.js": "^3.0.2"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "dev": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "publish-test": "gulp publish --env test",
+    "publish-pro": "gulp publish --env production",
+    "test": "react-app-rewired test --env=jsdom"
+  }
+}
