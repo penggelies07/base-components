@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as CSSTransition from 'react-transition-group/CSSTransition'
 import './Drawer.less'
 
 interface IDrawerProps {
@@ -31,7 +32,11 @@ export default class Drawer extends React.Component<IDrawerProps, IDrawerState> 
 
   render () {
     return (
-      <div className='Drawer'>Drawer</div>
+      <CSSTransition
+        classNames='Drawer'
+        timeout={300}>
+        <div className='Drawer'>Drawer</div>
+      </CSSTransition>
     )
   }
 }
