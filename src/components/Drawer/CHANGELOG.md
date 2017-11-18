@@ -18,12 +18,9 @@
 - overlayStyle
 
 - anchor
-- docked
 - visible
 - width
 
-- onOpen
-- onClose
 - onRequestChange
 
 ## Process
