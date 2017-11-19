@@ -4,7 +4,7 @@ import * as CSSTransition from 'react-transition-group/CSSTransition'
 import Overlay from '../internal/Overlay'
 import './Drawer.less'
 
-interface IDrawerProps {
+export interface IDrawerProps {
   visible: boolean,
   width?: number,
   anchor?: 'left' | 'right',
@@ -18,7 +18,7 @@ interface IDrawerProps {
   onRequestChange?: (visible: boolean) => void
 }
 
-interface IDrawerState {
+export interface IDrawerState {
   visible: boolean
 }
 

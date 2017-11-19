@@ -1,20 +1,27 @@
 import * as React from 'react'
+import Popup from '../internal/Popup'
 import './Popover.less'
 
-interface IPopoverProps {}
+export interface IPopoverProps {
+  visible?: boolean,
+  width?: number,
+  narrow?: boolean,
+  className?: string,
+  style?: React.CSSProperties,
+  children?: Node
+}
 
-interface IPopoverState {}
-
-export default class Popover extends React.Component<IPopoverProps, IPopoverState> {
-
-  constructor (props: IPopoverProps) {
-    super(props)
-    this.state = {}
-  }
+export default class Popover extends Popup<IPopoverProps> {
 
   render () {
+    const {
+      children
+    } = this.props
+
     return (
-      <div className='Popover'>Popover</div>
+      typeof children === 'string'
+      ? React.createElement('span', {}, children)
+      : React.cloneElement(React.Children.only(children))
     )
   }
 }

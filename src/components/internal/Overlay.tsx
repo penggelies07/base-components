@@ -1,15 +1,13 @@
 import * as React from 'react'
 
-interface IOverlayProps {
+export interface IOverlayProps {
   visible: boolean,
   className?: string,
   style?: React.CSSProperties,
   onClick?: () => void
 }
 
-interface IOverlayState {}
-
-export default class Overlay extends React.Component<IOverlayProps, IOverlayState> {
+export default class Overlay extends React.Component<IOverlayProps> {
 
   static defaultProps = {
     style: {}
