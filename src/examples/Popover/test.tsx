@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Drawer from '../../components/Drawer'
+import Popover from '../../components/Popover'
 
 interface ITestPopoverProps {}
 
@@ -9,14 +9,11 @@ interface ITestPopoverState {
 
 export default class TestPopover extends React.Component<ITestPopoverProps, ITestPopoverState> {
 
-  constructor (props: ITestPopoverProps) {
-    super(props)
-    this.state = {
-      visible: false
-    }
+  state = {
+    visible: false
   }
 
-  toggleDrawer = () => {
+  togglePopover = () => {
     const {visible} = this.state
     this.setState({visible: !visible})
   }
@@ -26,11 +23,13 @@ export default class TestPopover extends React.Component<ITestPopoverProps, ITes
 
     return (
       <div className='TestPopover'>
-        <h1 onClick={this.toggleDrawer}>Drawer</h1>
-        <Drawer
+        <h1 onClick={this.togglePopover}>TestPopover</h1>
+        <Popover
           visible={visible}
-          onRequestChange={(v) => this.setState({visible: v})}
-        />
+          onChangeRequest={(v) => this.setState({visible: v})}
+        >
+        123
+        </Popover>
       </div>
     )
   }

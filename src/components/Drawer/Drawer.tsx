@@ -14,7 +14,7 @@ export interface IDrawerProps {
   containerStyle?: React.CSSProperties,
   overlayClassName?: string,
   overlayStyle?: React.CSSProperties,
-  children?: Node,
+  children?: any,
   onRequestChange?: (visible: boolean) => void
 }
 
