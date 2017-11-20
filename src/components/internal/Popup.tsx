@@ -2,8 +2,10 @@ import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import Popper from 'popper.js'
 
-export type AnchorType = 'top' | 'bottom' | 'left' | 'right' |
-  'topleft' | 'topright' | 'bottomleft' | 'bottomright'
+export type AnchorType = 'auto' | 'top' | 'right' | 'bottom' | 'left'
+| 'auto-start' | 'top-start' | 'right-start' | 'bottom-start' | 'left-start'
+| 'auto-end' | 'top-end' | 'right-end' | 'bottom-end' | 'left-end'
+
 
 export interface IPopupProps {
   visible?: boolean,
@@ -33,8 +35,8 @@ export default abstract class Popup<P> extends React.Component<IPopupProps & P, 
   }
 
   target: Element
-  container: Element
-  popper: Element
+  container: HTMLElement | null
+  popper: HTMLElement
   $popper: Popper | null
   timer: any
 
@@ -55,8 +57,17 @@ export default abstract class Popup<P> extends React.Component<IPopupProps & P, 
     }
   }
 
-  componentDidUpdate () {
-    console.log()
+  componentDidUpdate (prevProps: any, prevState: any) {
+    const visible = this.props.visible
+    if ('visible' in this.props && visible !== prevState.visible) {
+      if (visible) {
+        this.show()
+      } else {
+        this.hide()
+      }
+    } else {
+      this.renderPopper()
+    }
   }
 
   show = () => {
@@ -133,7 +144,7 @@ export default abstract class Popup<P> extends React.Component<IPopupProps & P, 
     const {anchor} = this.props
     const content = this.getContent()
 
-    if (!content) {
+    if (!content || !this.container) {
       return
     }
 
@@ -141,10 +152,27 @@ export default abstract class Popup<P> extends React.Component<IPopupProps & P, 
       this.$popper.destroy()
     }
 
-    this.$popper = ReactDOM.unstable_renderSubtreeIntoContainer(this, content, this.container)
+    this.popper = ReactDOM.unstable_renderSubtreeIntoContainer(this, content, this.container) as HTMLElement
+
+    if (this.popper) {
+      const modifiers =  {arrow: {element: this.getArrow(this.popper) || ''}}
+      
+      this.$popper = new Popper(this.target, this.popper, {
+        placement: anchor, modifiers
+      })
+    }
   }
 
   destroyPopper = () => {
-    console.log()
+    if (this.$popper) {
+      this.$popper.destroy()
+      this.$popper = null
+    }
+
+    if (this.container) {
+      ReactDOM.unmountComponentAtNode(this.container)
+      document.body.removeChild(this.container)
+      this.container = null
+    }
   }
 }
