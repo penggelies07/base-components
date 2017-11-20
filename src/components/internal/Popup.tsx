@@ -38,8 +38,10 @@ export default abstract class Popup<P> extends React.Component<IPopupProps & P, 
   $popper: Popper | null
   timer: any
 
-  componentDidMount () {
+  abstract getArrow: (popper: HTMLElement) => Element | null
+  abstract getContent: () => React.ReactElement<any> | null
 
+  componentDidMount () {
     this.target = ReactDOM.findDOMNode(this)
 
     if (!this.target) {
@@ -119,7 +121,27 @@ export default abstract class Popup<P> extends React.Component<IPopupProps & P, 
   }
 
   createPopper = () => {
-    console.log()
+    if (!this.container) {
+      this.container = document.createElement('div')
+      document.body.appendChild(this.container)
+    }
+
+    this.renderPopper()
+  }
+
+  renderPopper = () => {
+    const {anchor} = this.props
+    const content = this.getContent()
+
+    if (!content) {
+      return
+    }
+
+    if (this.$popper) {
+      this.$popper.destroy()
+    }
+
+    this.$popper = ReactDOM.unstable_renderSubtreeIntoContainer(this, content, this.container)
   }
 
   destroyPopper = () => {
